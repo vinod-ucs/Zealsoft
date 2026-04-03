@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZealSoft Systems | Custom Software Development</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#29A3F0',    // Electric Blue
+                        secondary: '#B4CE4C',  // Lime Green
+                        accent: '#B888E9',     // Soft Purple
+                        dark: '#0F0C2E',       // Navy Dark
+                    },
+                    backgroundImage: {
+                        'premium-gradient': 'linear-gradient(135deg, #FDF7FF 0%, #F5FAFF 50%, #F8FFF5 100%)',
+                    },
+                    boxShadow: {
+                        'premium': '0 20px 50px rgba(15, 12, 46, 0.08)',
+                        'glow-primary': '0 0 20px rgba(41, 163, 240, 0.4)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: #ffffff;
+            color: #0F0C2E;
+        }
+
+        .heading-font {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .premium-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(15, 12, 46, 0.05);
+            border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .premium-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(15, 12, 46, 0.12);
+        }
+
+        .nav-link {
+            position: relative;
+            font-weight: 500;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #29A3F0;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #0F0C2E 0%, #29A3F0 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-bg {
+            background: radial-gradient(circle at 50% 50%, rgba(184, 136, 233, 0.05) 0%, rgba(41, 163, 240, 0.05) 50%, transparent 100%);
+        }
+
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-glow-primary">
+                    <span class="text-white font-bold text-xl">Z</span>
+                </div>
+                <span class="text-xl font-bold heading-font tracking-tight text-dark uppercase"><img
+                        src="/Users/vinodux/Desktop/N8N-automation/Logo Zeal soft.png"></span>
+            </div>
+
+            <div class="hidden md:flex items-center gap-10 text-sm">
+                <a href="#home" class="nav-link text-dark">Home</a>
+                <a href="#services" class="nav-link text-dark">Services</a>
+                <a href="#about" class="nav-link text-dark">About</a>
+                <a href="#portfolio" class="nav-link text-dark">Portfolio</a>
+                <a href="#contact" class="nav-link text-dark">Contact Us</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button
+                    class="px-6 py-2.5 rounded-full bg-dark text-white font-semibold text-sm hover:bg-slate-800 transition-all shadow-premium">Quick
+                    Quotation</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-40 pb-32 px-6 hero-bg overflow-hidden min-h-screen flex items-center justify-center">
+        <!-- Background Decorations -->
+        <div class="absolute top-20 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-accent/5 rounded-full blur-[120px] -z-10"></div>
+        
+        <!-- Logic Flow Background SVG -->
+        <div class="absolute inset-0 z-0 flex items-center justify-center opacity-20 pointer-events-none">
+            <svg width="100%" height="100%" viewBox="0 0 1000 600" class="overflow-visible">
+                <path id="flow-path-1" d="M-100,300 Q200,100 500,300 T1100,300" fill="none" stroke="url(#gradient-flow)" stroke-width="2" stroke-dasharray="10 20" />
+                <path id="flow-path-2" d="M-100,300 Q200,500 500,300 T1100,300" fill="none" stroke="url(#gradient-flow)" stroke-width="1.5" stroke-dasharray="5 15" />
+                <defs>
+                    <linearGradient id="gradient-flow" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#29A3F0" stop-opacity="0" />
+                        <stop offset="50%" stop-color="#29A3F0" stop-opacity="0.5" />
+                        <stop offset="100%" stop-color="#29A3F0" stop-opacity="0" />
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+
+        <div class="max-w-7xl mx-auto w-full relative">
+            <!-- Surrounding Animation Elements -->
+            
+            <!-- Code Window (Positioned Top Left) -->
+            <div class="code-window premium-card absolute -top-20 -left-10 w-[300px] bg-white/40 backdrop-blur-xl border border-white/60 shadow-2xl p-5 z-10 hidden xl:block">
+                <div class="flex gap-2 mb-3">
+                    <div class="w-2 h-2 rounded-full bg-red-400"></div>
+                    <div class="w-2 h-2 rounded-full bg-yellow-400"></div>
+                    <div class="w-2 h-2 rounded-full bg-green-400"></div>
+                </div>
+                <div class="space-y-2 font-mono text-[10px] leading-tight text-dark">
+                    <div class="flex gap-2"><span class="text-blue-500">class</span> <span>GrowthEngine</span> {</div>
+                    <div class="pl-4 flex gap-2"><span class="text-primary italic">optimize</span>() {</div>
+                    <div class="pl-8 flex gap-2 text-gray-400">return <span class="text-secondary">"10x_SPEED"</span>;</div>
+                    <div class="pl-4">}</div>
+                    <div>}</div>
+                </div>
+            </div>
+
+            <!-- Orbiting Nodes (Scattered Around) -->
+            <div class="node-item absolute top-10 right-[-5%] premium-card p-4 bg-white/80 shadow-lg flex items-center gap-3 z-30 hidden lg:flex">
+                <div class="w-8 h-8 bg-secondary/20 rounded-lg flex items-center justify-center text-secondary">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+                <span class="text-xs font-bold text-dark">Microservices</span>
+            </div>
+
+            <div class="node-item absolute bottom-0 left-[5%] premium-card p-4 bg-white/80 shadow-lg flex items-center gap-3 z-30 hidden lg:flex">
+                <div class="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center text-primary">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <span class="text-xs font-bold text-dark">Cloud Native</span>
+            </div>
+
+            <div class="node-item absolute bottom-20 right-[5%] premium-card p-4 bg-white/80 shadow-lg flex items-center gap-3 z-30 hidden lg:flex">
+                <div class="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center text-accent">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <span class="text-xs font-bold text-dark">Enterprise Security</span>
+            </div>
+
+            <!-- Central Content -->
+            <div class="max-w-4xl mx-auto text-center space-y-10 relative z-20">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary font-semibold text-xs uppercase tracking-widest border border-primary/20">
+                    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                    Software development company
+                </div>
+
+                <h1 class="text-6xl md:text-8xl font-extrabold heading-font leading-[1.1] text-dark tracking-tight">
+                    We Build Custom Software That <br>
+                    <span class="gradient-text">Help Businesses Accelerate Growth</span>
+                </h1>
+
+                <p class="text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
+                    ZealSoft Systems Delivers an Outclass experience with efficient Processes, Reliable Communication, Clear
+                    expectations, And a Team Built on Integrity.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-6 pt-6">
+                    <button class="w-full sm:w-auto px-12 py-5 rounded-full bg-dark text-white font-bold text-lg shadow-premium hover:scale-105 transition-all">Discover Now</button>
+                    <a href="#contact" class="text-dark font-bold border-b-2 border-dark/10 hover:border-primary hover:text-primary transition-all pb-1 uppercase tracking-widest text-sm">View Success Stories →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Logo Row -->
+    <section class="py-20 border-y border-gray-100 bg-white">
+        <div class="max-w-7xl mx-auto px-6 overflow-hidden">
+            <div
+                class="flex flex-wrap items-center justify-evenly gap-12 opacity-30 grayscale hover:grayscale-0 transition-all duration-500">
+                <span class="text-3xl font-black heading-font tracking-tighter">NORTON</span>
+                <span class="text-3xl font-black heading-font tracking-tighter">Investopedia</span>
+                <span class="text-3xl font-black heading-font tracking-tighter">PR Newswire</span>
+                <span class="text-3xl font-black heading-font tracking-tighter">MarketWatch</span>
+                <span class="text-3xl font-black heading-font tracking-tighter">VentureBeat</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-32 px-6 bg-gradient-to-b from-white to-gray-50/50">
+        <div class="max-w-7xl mx-auto">
+            <div class="premium-card p-12 md:p-20 bg-white shadow-premium relative overflow-hidden">
+                <!-- Background Decoration -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -z-10"></div>
+                <div class="absolute bottom-0 left-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10"></div>
+
+                <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-12 mb-16">
+                    <div class="space-y-4">
+                        <div class="text-primary font-bold text-sm tracking-widest uppercase">Our Pedigree</div>
+                        <h2 class="text-4xl md:text-5xl font-extrabold heading-font text-dark leading-tight">ZealSoft
+                            Systems</h2>
+                        <p class="text-gray-500 font-medium text-lg max-w-lg">Because we deliver the best and we are
+                            unbeatable in engineering excellence.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+                    <div class="space-y-3 stat-item">
+                        <div class="text-5xl md:text-7xl font-black text-secondary tracking-tighter drop-shadow-sm">5
+                            YEAR+</div>
+                        <div class="text-xs font-bold text-gray-400 uppercase tracking-[0.3em] pl-1">Experience</div>
+                    </div>
+                    <div class="space-y-3 stat-item">
+                        <div class="text-5xl md:text-7xl font-black text-secondary tracking-tighter drop-shadow-sm">100+
+                        </div>
+                        <div class="text-xs font-bold text-gray-400 uppercase tracking-[0.3em] pl-1">Website Developed
+                        </div>
+                    </div>
+                    <div class="space-y-3 stat-item">
+                        <div class="text-5xl md:text-7xl font-black text-secondary tracking-tighter drop-shadow-sm">100+
+                        </div>
+                        <div class="text-xs font-bold text-gray-400 uppercase tracking-[0.3em] pl-1">Mobile Apps
+                            Developed</div>
+                    </div>
+                    <div class="space-y-3 stat-item">
+                        <div class="stat-value text-5xl md:text-7xl font-black text-secondary tracking-tighter drop-shadow-sm">40+
+                        </div>
+                        <div class="text-xs font-bold text-gray-400 uppercase tracking-[0.3em] pl-1">Dedicated Engineers
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-32 px-6 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-20 items-center">
+            <div class="lg:w-1/2 space-y-12">
+                <div class="space-y-4">
+                    <div class="text-accent font-bold text-sm tracking-widest uppercase py-1 px-3 bg-accent/5 inline-block rounded">The Zealsoft Story</div>
+                    <h2 class="text-5xl md:text-6xl font-extrabold heading-font text-dark leading-tight">
+                        Built on Integrity, <br>Driven by <span class="text-accent">Innovation</span>
+                    </h2>
+                </div>
+                <p class="text-xl text-gray-500 leading-relaxed max-w-xl">
+                    At ZealSoft Systems, we don't just build code; we engineer growth. Our team of 40+ dedicated engineers works as an extension of your business, ensuring that every line of code adds measurable value to your bottom line.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary shrink-0">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-dark mb-1">Commitment</h4>
+                            <p class="text-sm text-gray-400">We stand by our delivery and timelines.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center text-secondary shrink-0">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-dark mb-1">Transparency</h4>
+                            <p class="text-sm text-gray-400">Clear communication at every stage.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="lg:w-1/2 relative">
+                <div class="premium-card p-8 bg-premium-gradient aspect-square flex flex-col justify-center gap-10 overflow-hidden relative group">
+                    <div class="absolute top-[-20%] right-[-20%] w-[60%] h-[60%] bg-primary/20 rounded-full blur-[80px] group-hover:scale-125 transition-transform duration-700"></div>
+                    <div class="relative z-10 text-center space-y-4">
+                        <div class="text-primary text-6xl font-black mb-4">Integrity</div>
+                        <div class="text-dark font-medium text-lg italic">"The foundation of our success."</div>
+                    </div>
+                    <!-- Decorative Floating Elements -->
+                    <div class="absolute bottom-10 left-10 p-4 premium-card shadow-xl flex items-center gap-3 z-20 floating">
+                        <div class="w-8 h-8 bg-secondary/20 rounded-lg flex items-center justify-center text-secondary">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <span class="text-xs font-bold text-dark">Propelling Success</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section (What's Trending) -->
+    <section id="services" class="py-32 px-6 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto space-y-20">
+            <div class="text-center space-y-4">
+                <div
+                    class="inline-block text-primary font-bold text-sm tracking-widest uppercase py-1 px-3 bg-primary/5 rounded">
+                    Our Expertise</div>
+                <h2 class="text-5xl md:text-6xl font-extrabold heading-font text-dark leading-tight">
+                    What's Trending in <span class="text-primary">Zealsoft Systems?</span>
+                </h2>
+                <p class="text-lg text-gray-500 leading-relaxed max-w-2xl mx-auto">
+                    We stay ahead of the curve to deliver cutting-edge solutions for your business growth.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="premium-card p-10 space-y-6 hover:border-primary/20 group relative overflow-hidden">
+                    <div
+                        class="absolute top-4 right-8 text-6xl font-black text-gray-50 group-hover:text-primary/10 transition-colors">
+                        01</div>
+                    <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-dark group-hover:text-primary transition-colors">Pre-biz and
+                        Development</h3>
+                    <p class="text-gray-400">Strategic planning and initial development phase for robust business
+                        foundations.</p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="premium-card p-10 space-y-6 hover:border-secondary/20 group relative overflow-hidden">
+                    <div
+                        class="absolute top-4 right-8 text-6xl font-black text-gray-50 group-hover:text-secondary/10 transition-colors">
+                        02</div>
+                    <div class="w-14 h-14 bg-secondary/10 rounded-2xl flex items-center justify-center text-secondary">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-dark group-hover:text-secondary transition-colors">UI UX Design
+                    </h3>
+                    <p class="text-gray-400">Human-centric design principles to create intuitive and engaging user
+                        experiences.</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="premium-card p-10 space-y-6 hover:border-accent/20 group relative overflow-hidden">
+                    <div
+                        class="absolute top-4 right-8 text-6xl font-black text-gray-50 group-hover:text-accent/10 transition-colors">
+                        03</div>
+                    <div class="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center text-accent">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-dark group-hover:text-accent transition-colors">Website & App
+                        Development</h3>
+                    <p class="text-gray-400">Scalable web and mobile applications built with cutting-edge technology
+                        stacks.</p>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="premium-card p-10 space-y-6 hover:border-secondary/20 group relative overflow-hidden">
+                    <div
+                        class="absolute top-4 right-8 text-6xl font-black text-gray-50 group-hover:text-secondary/10 transition-colors">
+                        04</div>
+                    <div class="w-14 h-14 bg-secondary/10 rounded-2xl flex items-center justify-center text-secondary">
+                        <i class="fas fa-shopping-cart text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-dark group-hover:text-secondary transition-colors">Ecommerce Solutions</h3>
+                    <p class="text-gray-400">High-converting online stores with seamless payment and inventory management.</p>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="premium-card p-10 space-y-6 hover:border-primary/20 group relative overflow-hidden">
+                    <div
+                        class="absolute top-4 right-8 text-6xl font-black text-gray-50 group-hover:text-primary/10 transition-colors">
+                        05</div>
+                    <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-dark group-hover:text-primary transition-colors">QA & Testing
+                    </h3>
+                    <p class="text-gray-400">Rigorous quality assurance to ensure bug-free and smooth performance.</p>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="premium-card p-10 space-y-6 hover:border-secondary/20 group relative overflow-hidden">
+                    <div
+                        class="absolute top-4 right-8 text-6xl font-black text-gray-50 group-hover:text-secondary/10 transition-colors">
+                        06</div>
+                    <div class="w-14 h-14 bg-secondary/10 rounded-2xl flex items-center justify-center text-secondary">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-dark group-hover:text-secondary transition-colors">Software
+                        Support</h3>
+                    <p class="text-gray-400">Continuous maintenance and 24/7 support for your deployed solutions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us Section (Grid) -->
+    <section class="py-32 px-6 bg-gray-50/50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-24 space-y-4">
+                <h2 class="text-5xl font-extrabold heading-font text-dark leading-tight">Zealsoft is Built to Fix That
+                </h2>
+                <p class="text-gray-500 text-lg">We bridge the gap between technical complexity and business growth.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Card 1 -->
+                <div
+                    class="bg-white p-12 rounded-[32px] border border-gray-100 space-y-8 hover:shadow-premium transition-all group">
+                    <div
+                        class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        class="w-16 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold heading-font text-dark">Engineering Integrity</h3>
+                    <p class="text-gray-400 leading-relaxed">No cutting corners. We build for long-term scalability and security.
+                    </p>
+                </div>
+                <!-- Card 2 -->
+                <div
+                    class="bg-white p-12 rounded-[32px] border border-gray-100 space-y-8 hover:shadow-premium transition-all group">
+                    <div
+                        class="w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-colors">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold heading-font text-dark">Dedicated Experts</h3>
+                    <p class="text-gray-400 leading-relaxed">40+ full-time engineers who treat your project as their own.
+                    </p>
+                </div>
+                <!-- Card 3 -->
+                <div
+                    class="bg-white p-12 rounded-[32px] border border-gray-100 space-y-8 hover:shadow-premium transition-all group">
+                    <div
+                        class="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white transition-colors">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold heading-font text-dark">Fast Delivery</h3>
+                    <p class="text-gray-400 leading-relaxed">Efficient processes and clear communication to meet tight deadlines.
+                    </p>
+                </div>
+
+                <!-- Card 4 (Dark CTA) -->
+                <div class="bg-dark p-12 rounded-[32px] space-y-8 flex flex-col justify-between text-white">
+                    <div class="space-y-4">
+                        <h3 class="text-2xl font-bold heading-font leading-tight">Ready to build your next big software?</h3>
+                        <p class="text-gray-400 text-sm">Join 100+ businesses growing with ZealSoft.</p>
+                    </div>
+                    <button
+                        class="w-full py-4 rounded-2xl bg-primary text-white font-bold hover:scale-105 transition-transform">Get
+                        Started Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4-Step Process Section -->
+    <section id="process" class="py-32 px-6">
+        <div
+            class="max-w-7xl mx-auto rounded-[60px] bg-premium-gradient p-16 lg:p-24 flex flex-col lg:flex-row gap-24 items-center">
+            <div class="lg:w-1/2 space-y-10">
+                <div class="space-y-4">
+                    <div class="text-primary font-bold text-sm tracking-widest uppercase">Our Methodology</div>
+                    <h2 class="text-6xl font-extrabold heading-font text-dark leading-tight">Our Proven Software Development Process</h2>
+                </div>
+                <div class="flex items-center gap-6">
+                    <button class="px-10 py-5 rounded-full bg-dark text-white font-bold text-lg shadow-premium">Start
+                        Your Project</button>
+                </div>
+            </div>
+
+            <div class="lg:w-1/2 w-full space-y-12">
+                <!-- Step 1 -->
+                <div class="flex gap-8 group">
+                    <div
+                        class="w-14 h-14 rounded-full border-4 border-primary/20 flex items-center justify-center shrink-0 text-primary text-xl font-black bg-white shadow-xl group-hover:scale-110 transition-transform">
+                        1</div>
+                    <div class="space-y-2">
+                        <h4 class="text-2xl font-bold text-dark">Discover</h4>
+                        <p class="text-gray-500">We dive deep into your project requirements and business goals to build
+                            a solid roadmap.</p>
+                    </div>
+                </div>
+                <!-- Step 2 -->
+                <div class="flex gap-8 group">
+                    <div
+                        class="w-14 h-14 rounded-full border-4 border-secondary/20 flex items-center justify-center shrink-0 text-secondary text-xl font-black bg-white shadow-xl group-hover:scale-110 transition-transform">
+                        2</div>
+                    <div class="space-y-2">
+                        <h4 class="text-2xl font-bold text-dark">Design</h4>
+                        <p class="text-gray-500">Creating wireframes and high-fidelity UI/UX designs that ensure a
+                            seamless user experience.</p>
+                    </div>
+                </div>
+                <!-- Step 3 -->
+                <div class="flex gap-8 group">
+                    <div
+                        class="w-14 h-14 rounded-full border-4 border-accent/20 flex items-center justify-center shrink-0 text-accent text-xl font-black bg-white shadow-xl group-hover:scale-110 transition-transform">
+                        3</div>
+                    <div class="space-y-2">
+                        <h4 class="text-2xl font-bold text-dark">Build</h4>
+                        <p class="text-gray-500">Our elite engineers translate designs into high-performance, secure,
+                            and scalable code.</p>
+                    </div>
+                </div>
+                <!-- Step 4 -->
+                <div class="flex gap-8 group">
+                    <div
+                        class="w-14 h-14 rounded-full border-4 border-primary/20 flex items-center justify-center shrink-0 text-primary text-xl font-black bg-white shadow-xl group-hover:scale-110 transition-transform">
+                        4</div>
+                    <div class="space-y-2">
+                        <h4 class="text-2xl font-bold text-dark">Deliver</h4>
+                        <p class="text-gray-500">Rigorous testing followed by seamless deployment and continuous
+                            post-launch support.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Midway CTA Banner -->
+    <section class="py-20 px-6">
+        <div
+            class="max-w-7xl mx-auto rounded-[48px] overflow-hidden relative min-h-[400px] flex items-center justify-center text-center group">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&h=600&q=80"
+                alt="Team Work"
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+            <div class="absolute inset-0 bg-dark/60 backdrop-blur-[2px]"></div>
+            <div class="relative z-10 space-y-8 px-6">
+                <h2 class="text-5xl md:text-7xl font-black heading-font text-white leading-tight tracking-tighter">
+                    We Engineer Products <br>
+                    <span class="text-secondary">Turning ideas into digital reality</span>
+                </h2>
+                <button
+                    class="px-12 py-5 rounded-full bg-primary text-white font-bold text-xl shadow-glow-primary hover:scale-105 transition-all">Discover
+                    Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards & Certifications -->
+    <section class="py-32 px-6 bg-white">
+        <div class="max-w-7xl mx-auto space-y-16">
+            <div class="text-center space-y-4">
+                <div class="text-secondary font-bold text-sm tracking-widest uppercase">Recognition</div>
+                <h2 class="text-5xl font-extrabold heading-font text-dark">We Are Awarded & Certified For Our Services
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div
+                    class="premium-card p-10 flex flex-col items-center justify-center space-y-6 hover:border-secondary/30 transition-all">
+                    <img src="https://vignette.wikia.nocookie.net/logopedia/images/d/d7/GoodFirms_Logo.png"
+                        alt="GoodFirms" class="h-20 object-contain grayscale hover:grayscale-0 transition-all">
+                    <div class="text-center">
+                        <div class="font-bold text-dark">Top Developers</div>
+                        <div class="text-xs text-gray-400 font-bold uppercase tracking-widest pt-1">GoodFirms</div>
+                    </div>
+                </div>
+                <div
+                    class="premium-card p-10 flex flex-col items-center justify-center space-y-6 hover:border-primary/30 transition-all">
+                    <img src="https://www.clutch.co/sites/all/themes/clutch/logo.png" alt="Clutch"
+                        class="h-20 object-contain grayscale hover:grayscale-0 transition-all">
+                    <div class="text-center">
+                        <div class="font-bold text-dark">Top Agency</div>
+                        <div class="text-xs text-gray-400 font-bold uppercase tracking-widest pt-1">Clutch.co</div>
+                    </div>
+                </div>
+                <div
+                    class="premium-card p-10 flex flex-col items-center justify-center space-y-6 hover:border-accent/30 transition-all">
+                    <img src="https://www.upwork.com/static/images/upwork-logo.svg" alt="Upwork"
+                        class="h-20 object-contain grayscale hover:grayscale-0 transition-all">
+                    <div class="text-center">
+                        <div class="font-bold text-dark">Top Rated</div>
+                        <div class="text-xs text-gray-400 font-bold uppercase tracking-widest pt-1">Upwork</div>
+                    </div>
+                </div>
+                <div
+                    class="premium-card p-10 flex flex-col items-center justify-center space-y-6 hover:border-secondary/30 transition-all">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/ISO_9001_Logo.svg/1024px-ISO_9001_Logo.svg.png"
+                        alt="ISO" class="h-20 object-contain grayscale hover:grayscale-0 transition-all">
+                    <div class="text-center">
+                        <div class="font-bold text-dark">ISO Certified</div>
+                        <div class="text-xs text-gray-400 font-bold uppercase tracking-widest pt-1">ISO 9001:2015</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section class="py-20 bg-white overflow-hidden border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 mb-12 text-center space-y-4">
+            <div class="text-primary font-bold text-sm tracking-widest uppercase">Our Arsenal</div>
+            <h2 class="text-4xl font-extrabold heading-font text-dark">Technologies We Master</h2>
+        </div>
+        <div class="flex flex-nowrap gap-12 items-center justify-center opacity-40 grayscale hover:grayscale-0 transition-all duration-500 py-10 overflow-x-auto no-scrollbar">
+            <div class="flex flex-col items-center gap-2 min-w-[120px]">
+                <i class="fab fa-react text-5xl text-[#61DAFB]"></i>
+                <span class="text-xs font-bold text-gray-400">React</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 min-w-[120px]">
+                <i class="fab fa-node-js text-5xl text-[#339933]"></i>
+                <span class="text-xs font-bold text-gray-400">Node.js</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 min-w-[120px]">
+                <i class="fab fa-python text-5xl text-[#3776AB]"></i>
+                <span class="text-xs font-bold text-gray-400">Python</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 min-w-[120px]">
+                <i class="fab fa-aws text-5xl text-[#FF9900]"></i>
+                <span class="text-xs font-bold text-gray-400">AWS</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 min-w-[120px]">
+                <i class="fab fa-docker text-5xl text-[#2496ED]"></i>
+                <span class="text-xs font-bold text-gray-400">Docker</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 min-w-[120px]">
+                <i class="fab fa-js text-5xl text-[#F7DF1E]"></i>
+                <span class="text-xs font-bold text-gray-400">JavaScript</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 min-w-[120px]">
+                <i class="fab fa-swift text-5xl text-[#F05138]"></i>
+                <span class="text-xs font-bold text-gray-400">Swift</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio / Case Studies -->
+    <section id="portfolio" class="py-32 px-6 bg-gray-50/50">
+        <div class="max-w-7xl mx-auto space-y-20">
+            <div class="text-center space-y-4">
+                <div class="text-accent font-bold text-sm tracking-widest uppercase">Our Success Stories</div>
+                <h2 class="text-5xl md:text-6xl font-extrabold heading-font text-dark leading-tight">Our Successfully
+                    Grown Businesses</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Case Study 1 -->
+                <div class="premium-card bg-white overflow-hidden group">
+                    <div class="aspect-[16/10] overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=80"
+                            alt="Real Estate App"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div
+                            class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity">
+                        </div>
+                    </div>
+                    <div class="p-12 space-y-6">
+                        <div class="text-primary font-bold text-sm tracking-widest uppercase">Real Estate</div>
+                        <h3 class="text-3xl font-bold text-dark leading-tight">Interpreters help real estate agents grow
+                            their businesses</h3>
+                        <p class="text-gray-500 text-lg">Custom language translation platform integrated into agent
+                            workflows for seamless international client scaling.</p>
+                        <button
+                            class="flex items-center gap-2 text-dark font-bold border-b-2 border-dark/10 hover:border-primary hover:text-primary transition-all pb-1 uppercase tracking-wider text-sm">View
+                            Case Study →</button>
+                    </div>
+                </div>
+
+                <!-- Case Study 2 -->
+                <div class="premium-card bg-white overflow-hidden group">
+                    <div class="aspect-[16/10] overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=1200&q=80"
+                            alt="Parking App"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div
+                            class="absolute inset-0 bg-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity">
+                        </div>
+                    </div>
+                    <div class="p-12 space-y-6">
+                        <div class="text-secondary font-bold text-sm tracking-widest uppercase">Smart City</div>
+                        <h3 class="text-3xl font-bold text-dark leading-tight">Reserve car parking for effortless travel
+                            10X Faster</h3>
+                        <p class="text-gray-500 text-lg">Advanced IoT-integrated parking reservation system that reduced
+                            wait times and increased urban mobility efficiency.</p>
+                        <button
+                            class="flex items-center gap-2 text-dark font-bold border-b-2 border-dark/10 hover:border-secondary hover:text-secondary transition-all pb-1 uppercase tracking-wider text-sm">View
+                            Case Study →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries We Serve -->
+    <section class="py-32 px-6 bg-white">
+        <div class="max-w-7xl mx-auto space-y-20">
+            <div class="text-center space-y-4">
+                <div class="text-primary font-bold text-sm tracking-widest uppercase">Target Markets</div>
+                <h2 class="text-5xl md:text-6xl font-extrabold heading-font text-dark leading-tight">Industries We Serve
+                </h2>
+                <p class="text-gray-500 text-xl max-w-2xl mx-auto">We deliver specialized software solutions tailored to
+                    the unique demands of diverse sectors.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Industry 1 -->
+                <div class="premium-card p-10 flex items-start gap-6 hover:bg-primary/5 transition-colors group">
+                    <div
+                        class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-all">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="space-y-2">
+                        <h4 class="text-2xl font-bold text-dark">SaaS Companies</h4>
+                        <p class="text-gray-400">Scalable cloud architectures and multi-tenant platforms for modern
+                            software providers.</p>
+                    </div>
+                </div>
+                <!-- Industry 2 -->
+                <div class="premium-card p-10 flex items-start gap-6 hover:bg-secondary/5 transition-colors group">
+                    <div
+                        class="w-14 h-14 bg-secondary/10 rounded-2xl flex items-center justify-center text-secondary shrink-0 group-hover:bg-secondary group-hover:text-white transition-all">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="space-y-2">
+                        <h4 class="text-2xl font-bold text-dark">Educational</h4>
+                        <p class="text-gray-400">LMS platforms, virtual classrooms, and interactive learning tools for
+                            the ed-tech sector.</p>
+                    </div>
+                </div>
+                <!-- Industry 3 -->
+                <div class="premium-card p-10 flex items-start gap-6 hover:bg-accent/5 transition-colors group">
+                    <div
+                        class="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center text-accent shrink-0 group-hover:bg-accent group-hover:text-white transition-all">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="space-y-2">
+                        <h4 class="text-2xl font-bold text-dark">Real Estate</h4>
+                        <p class="text-gray-400">Property management systems and high-converting listing platforms for
+                            real estate developers.</p>
+                    </div>
+                </div>
+                <!-- Industry 4 -->
+                <div class="premium-card p-10 flex items-start gap-6 hover:bg-primary/5 transition-colors group">
+                    <div
+                        class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-all">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="space-y-2">
+                        <h4 class="text-2xl font-bold text-dark">Healthcare</h4>
+                        <p class="text-gray-400">HIPAA-compliant telemedicine apps and patient management solutions for
+                            healthcare providers.</p>
+                    </div>
+                </div>
+                <!-- Industry 5 -->
+                <div class="premium-card p-10 flex items-start gap-6 hover:bg-secondary/5 transition-colors group">
+                    <div
+                        class="w-14 h-14 bg-secondary/10 rounded-2xl flex items-center justify-center text-secondary shrink-0 group-hover:bg-secondary group-hover:text-white transition-all">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2v12a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="space-y-2">
+                        <h4 class="text-2xl font-bold text-dark">Booking Systems</h4>
+                        <p class="text-gray-400">Automated appointment scheduling and reservation engines for
+                            service-oriented businesses.</p>
+                    </div>
+                </div>
+                <!-- Industry 6 -->
+                <div class="premium-card p-10 flex items-start gap-6 hover:bg-accent/5 transition-colors group">
+                    <div
+                        class="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center text-accent shrink-0 group-hover:bg-accent group-hover:text-white transition-all">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="space-y-2">
+                        <h4 class="text-2xl font-bold text-dark">Ecommerce</h4>
+                        <p class="text-gray-400">High-performance online stores and multi-vendor marketplaces with
+                            secure payment gateways.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="py-32 px-6 bg-dark overflow-hidden relative">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-primary/10 blur-[120px] -z-0"></div>
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-20 relative z-10">
+            <div class="lg:w-1/2 rounded-[48px] overflow-hidden shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80"
+                    alt="Tyler Sayne" class="w-full h-full object-cover">
+            </div>
+            <div class="lg:w-1/2 space-y-10">
+                <div class="text-secondary font-bold text-sm tracking-widest uppercase">Client Feedback</div>
+                <div class="space-y-6">
+                    <svg class="w-20 h-20 text-white/10" fill="currentColor" viewBox="0 0 32 32">
+                        <path d="M10 8v8h6v-8zm12 0v8h6v-8zm-12 10h-2v2h4v-2zm12 0h-2v2h4v-2z"></path>
+                    </svg>
+                    <p class="text-3xl md:text-4xl font-medium text-white leading-relaxed italic">
+                        "They built great custom solutions... helping us deliver value to our customers. Their
+                        engineering team is top-notch and proactive."
+                    </p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="text-2xl font-extrabold text-white">Tyler Sayne</h4>
+                    <p class="text-gray-400 font-bold uppercase tracking-widest text-sm">Project Director</p>
+                </div>
+                <button
+                    class="px-10 py-4 rounded-full bg-primary text-white font-bold hover:scale-105 transition-all shadow-glow-primary">Review
+                    Project</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="py-32 px-6 bg-white">
+        <div class="max-w-7xl mx-auto space-y-20">
+            <div class="flex flex-col md:flex-row justify-between items-end gap-8">
+                <div class="space-y-4">
+                    <div class="text-accent font-bold text-sm tracking-widest uppercase">Knowledge Hub</div>
+                    <h2 class="text-5xl font-extrabold heading-font text-dark leading-tight">Recent Blogs</h2>
+                </div>
+                <button
+                    class="px-8 py-3 rounded-full border-2 border-dark/10 font-bold hover:bg-dark hover:text-white transition-all">View
+                    All Posts</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Blog 1 -->
+                <div class="group cursor-pointer">
+                    <div class="aspect-[16/9] rounded-[32px] overflow-hidden mb-8 shadow-premium">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80"
+                            alt="Blog 1"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 text-sm font-bold text-gray-400 uppercase tracking-widest">
+                            <span>Technology</span>
+                            <span class="w-1 h-1 rounded-full bg-gray-300"></span>
+                            <span>5 Min Read</span>
+                        </div>
+                        <h3 class="text-3xl font-bold text-dark group-hover:text-primary transition-colors">What kind of
+                            website does your company need?</h3>
+                        <p class="text-gray-500 text-lg">Discover the differences between static, dynamic, and
+                            e-commerce platforms to find your perfect fit.</p>
+                        <button
+                            class="font-bold text-primary border-b-2 border-primary/10 hover:border-primary transition-all pb-1 uppercase tracking-widest text-xs">Read
+                            More →</button>
+                    </div>
+                </div>
+                <!-- Blog 2 -->
+                <div class="group cursor-pointer">
+                    <div class="aspect-[16/9] rounded-[32px] overflow-hidden mb-8 shadow-premium">
+                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80"
+                            alt="Blog 2"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 text-sm font-bold text-gray-400 uppercase tracking-widest">
+                            <span>Marketing</span>
+                            <span class="w-1 h-1 rounded-full bg-gray-300"></span>
+                            <span>8 Min Read</span>
+                        </div>
+                        <h3 class="text-3xl font-bold text-dark group-hover:text-secondary transition-colors">Setting up
+                            social media for your business</h3>
+                        <p class="text-gray-500 text-lg">A comprehensive guide to building a strong brand presence
+                            across all major social networks.</p>
+                        <button
+                            class="font-bold text-secondary border-b-2 border-secondary/10 hover:border-secondary transition-all pb-1 uppercase tracking-widest text-xs">Read
+                            More →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact" class="py-32 px-6 bg-gray-50/50">
+        <div class="max-w-4xl mx-auto">
+            <div class="premium-card p-12 md:p-20 bg-white shadow-premium space-y-12">
+                <div class="text-center space-y-4">
+                    <div class="text-primary font-bold text-sm tracking-widest uppercase">Get in touch</div>
+                    <h2 class="text-5xl font-extrabold heading-font text-dark">Get a free consultation</h2>
+                    <p class="text-gray-500 text-lg">Bring your ideas to life with our expert engineering team.</p>
+                </div>
+
+                <form class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-2">
+                        <label class="text-xs font-black uppercase tracking-widest text-gray-400 ml-1">Full Name</label>
+                        <input type="text" placeholder="John Doe"
+                            class="w-full px-6 py-4 rounded-2xl bg-gray-50 border border-gray-100 focus:outline-none focus:border-primary transition-all">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-xs font-black uppercase tracking-widest text-gray-400 ml-1">Email
+                            Address</label>
+                        <input type="email" placeholder="john@example.com"
+                            class="w-full px-6 py-4 rounded-2xl bg-gray-50 border border-gray-100 focus:outline-none focus:border-primary transition-all">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-xs font-black uppercase tracking-widest text-gray-400 ml-1">Phone
+                            Number</label>
+                        <input type="tel" placeholder="+1 (555) 000-0000"
+                            class="w-full px-6 py-4 rounded-2xl bg-gray-50 border border-gray-100 focus:outline-none focus:border-primary transition-all">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-xs font-black uppercase tracking-widest text-gray-400 ml-1">Company
+                            Name</label>
+                        <input type="text" placeholder="Global Tech Inc."
+                            class="w-full px-6 py-4 rounded-2xl bg-gray-50 border border-gray-100 focus:outline-none focus:border-primary transition-all">
+                    </div>
+                    <div class="md:col-span-2 space-y-2">
+                        <label class="text-xs font-black uppercase tracking-widest text-gray-400 ml-1">Select
+                            Service</label>
+                        <select
+                            class="w-full px-6 py-4 rounded-2xl bg-gray-50 border border-gray-100 focus:outline-none focus:border-primary transition-all appearance-none">
+                            <option>Website & App Development</option>
+                            <option>UI/UX Design</option>
+                            <option>Software Support</option>
+                            <option>QA & Testing</option>
+                        </select>
+                    </div>
+                    <div class="md:col-span-2 space-y-2">
+                        <label class="text-xs font-black uppercase tracking-widest text-gray-400 ml-1">Your
+                            Message</label>
+                        <textarea rows="4" placeholder="Tell us about your project..."
+                            class="w-full px-6 py-4 rounded-2xl bg-gray-50 border border-gray-100 focus:outline-none focus:border-primary transition-all"></textarea>
+                    </div>
+                    <div class="md:col-span-2 pt-4">
+                        <button
+                            class="w-full py-6 rounded-2xl bg-dark text-white font-bold text-xl hover:scale-[1.02] transition-transform shadow-premium">Submit
+                            Request</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white pt-32 pb-16 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20 mb-24">
+            <div class="space-y-8">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-glow-primary">
+                        <span class="text-white font-black text-xl">Z</span>
+                    </div>
+                    <span class="text-3xl font-black heading-font tracking-tighter text-dark uppercase">ZealSoft</span>
+                </div>
+                <p class="text-gray-400 text-lg leading-relaxed">
+                    Delivering outclass software experiences with integrity and engineering excellence since 2021.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#"
+                        class="w-10 h-10 bg-gray-50 border border-gray-100 rounded-full flex items-center justify-center hover:bg-primary/10 hover:text-primary transition-all"><i
+                            class="fab fa-linkedin-in"></i></a>
+                    <a href="#"
+                        class="w-10 h-10 bg-gray-50 border border-gray-100 rounded-full flex items-center justify-center hover:bg-secondary/10 hover:text-secondary transition-all"><i
+                            class="fab fa-twitter"></i></a>
+                    <a href="#"
+                        class="w-10 h-10 bg-gray-50 border border-gray-100 rounded-full flex items-center justify-center hover:bg-accent/10 hover:text-accent transition-all"><i
+                            class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="space-y-8">
+                <h4 class="text-xl font-bold text-dark">Visit Us</h4>
+                <div class="space-y-4 text-gray-500 font-medium text-lg">
+                    <p class="flex items-start gap-3">
+                        <i class="fas fa-map-marker-alt text-primary mt-1"></i>
+                        <span>123 Tech Avenue, <br>Suite 500, Silicon Valley, CA</span>
+                    </p>
+                    <p class="flex items-center gap-3">
+                        <i class="fas fa-envelope text-secondary"></i>
+                        <span>hello@zealsoft.com</span>
+                    </p>
+                    <p class="flex items-center gap-3">
+                        <i class="fas fa-phone text-accent"></i>
+                        <span>+1 (555) 000-1111</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="space-y-8">
+                <h4 class="text-xl font-bold text-dark">Services</h4>
+                <ul class="space-y-4 text-gray-500 font-medium text-lg">
+                    <li><a href="#" class="hover:text-primary transition">App Development</a></li>
+                    <li><a href="#" class="hover:text-primary transition">UI/UX Design</a></li>
+                    <li><a href="#" class="hover:text-primary transition">QA & Testing</a></li>
+                    <li><a href="#" class="hover:text-primary transition">Software Support</a></li>
+                </ul>
+            </div>
+
+            <div class="space-y-8">
+                <h4 class="text-xl font-bold text-dark">Get in Touch</h4>
+                <p class="text-gray-500 text-lg">Join our newsletter for software insights.</p>
+                <form class="flex gap-2">
+                    <input type="email" placeholder="Email"
+                        class="flex-1 px-4 py-3 rounded-xl bg-gray-50 border border-gray-100 text-sm focus:outline-none focus:border-primary">
+                    <button
+                        class="px-6 py-3 bg-dark text-white rounded-xl font-bold text-sm hover:bg-primary transition-all">Join</button>
+                </form>
+            </div>
+        </div>
+
+        <div
+            class="max-w-7xl mx-auto px-6 pt-10 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-gray-400 font-bold uppercase tracking-widest">
+            <p>© 2026 ZealSoft Systems. All Rights Reserved.</p>
+            <div class="flex gap-10">
+                <a href="#" class="hover:text-primary">Privacy</a>
+                <a href="#" class="hover:text-primary">Terms</a>
+                <a href="#" class="hover:text-primary">Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Stats reveals
+            gsap.from(".stat-item", {
+                scrollTrigger: {
+                    trigger: ".stat-item",
+                    start: "top 85%",
+                },
+                y: 40,
+                opacity: 0,
+                duration: 1,
+                stagger: 0.15,
+                ease: "power3.out"
+            });
+
+            // Subtle reveals
+            gsap.utils.toArray(['h1', 'h2', '.premium-card']).forEach(el => {
+                gsap.from(el, {
+                    scrollTrigger: {
+                        trigger: el,
+                        start: "top 90%",
+                    },
+                    y: 30,
+                    opacity: 0,
+                    duration: 1,
+                    ease: "power2.out"
+                });
+            });
+
+            // Hero Niche Animations
+            if (document.querySelector('.code-window')) {
+                // Floating Code Window
+                gsap.to(".code-window", {
+                    y: -20,
+                    duration: 3,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut"
+                });
+
+                // Orbiting Nodes
+                gsap.utils.toArray(".node-item").forEach((node, i) => {
+                    gsap.to(node, {
+                        y: i % 2 === 0 ? 15 : -15,
+                        x: i % 2 === 0 ? -10 : 10,
+                        duration: 4 + i,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: "sine.inOut",
+                        delay: i * 0.5
+                    });
+                });
+
+                // SVG Path Data Flow
+                gsap.to("#flow-path-1, #flow-path-2", {
+                    strokeDashoffset: -100,
+                    duration: 10,
+                    repeat: -1,
+                    ease: "none"
+                });
+            }
+
+            // Scroll Progress Bar
+            gsap.to("#scroll-progress", {
+                width: "100%",
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "body",
+                    start: "top top",
+                    end: "bottom bottom",
+                    scrub: 0.3
+                }
+            });
+
+            // Tech Stack Staggered Animation
+            gsap.from(".no-scrollbar > div", {
+                scrollTrigger: {
+                    trigger: ".no-scrollbar",
+                    start: "top 95%",
+                },
+                y: 30,
+                opacity: 0,
+                duration: 0.8,
+                stagger: 0.1,
+                ease: "power2.out"
+            });
+        });
+    </script>
+</body>
+
+</html>
